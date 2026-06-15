@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteer Sign-Up · CNW All-Comers 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f2942;
+  --navy-mid: #1a3a5c;
+  --gold: #ff7438;
+  --gold-light: #ff9a6c;
+  --cream: #f7f3ee;
+  --cream-dark: #ede8e1;
+  --text: #1a1410;
+  --text-mid: #4a3f35;
+  --text-muted: #8a7a6a;
+  --white: #ffffff;
+  --border: rgba(15,41,66,0.15);
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--navy); padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px; position: sticky; top: 0; z-index: 100;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--white); font-family: 'DM Serif Display', serif; font-size: 18px;
+}
+.nav-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+
+
+/* ══════════════════════════════════════════════
+   VOLUNTEER FORM
+══════════════════════════════════════════════ */
+.form-hero {
+  background: var(--navy); color: var(--white);
+  padding: 48px 32px 40px; text-align: center;
+}
+.form-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.form-hero h1 em { color: var(--gold-light); font-style: italic; }
+.form-hero p { color: rgba(255,255,255,0.7); font-size: 15px; max-width: 520px; margin: 0 auto; }
+.season-tag {
+  display: inline-block; background: var(--gold); color: var(--navy);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+}
+
+.form-wrap { max-width: 820px; margin: 0 auto; padding: 32px 24px 64px; }
+
+.form-section {
+  background: var(--white); border-radius: var(--radius);
+  border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden;
+}
+.form-section-header {
+  background: var(--navy); color: var(--white); padding: 14px 20px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gold); color: var(--navy);
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.form-section-body { padding: 20px; }
+.field-row { margin-bottom: 16px; }
+.field-row:last-child { margin-bottom: 0; }
+.field-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-mid); margin-bottom: 6px; }
+.field-label .optional { font-weight: 400; color: var(--text-muted); }
+input[type="text"], input[type="email"], textarea {
+  width: 100%; border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 10px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 15px; color: var(--text); background: var(--cream);
+  transition: border-color 0.15s; outline: none;
+}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: var(--navy); background: var(--white);
+}
+textarea { resize: vertical; min-height: 80px; }
+.field-hint { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+
+/* GRID */
+.grid-intro { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+.grid-scroll { overflow-x: auto; }
+.avail-grid { border-collapse: collapse; width: 100%; min-width: 700px; font-size: 12px; }
+.avail-grid th, .avail-grid td { border: 1px solid var(--border); padding: 0; }
+.avail-grid thead th {
+  background: var(--navy); color: var(--white);
+  font-weight: 500; font-size: 11px; text-align: center;
+  padding: 8px 4px; white-space: nowrap;
+}
+.avail-grid thead th.role-col {
+  background: var(--navy-mid); text-align: left; padding: 8px 12px; min-width: 200px;
+}
+.avail-grid tbody tr:nth-child(even) td { background: rgba(15,41,66,0.02); }
+.avail-grid tbody tr:hover td { background: rgba(200,146,42,0.06); }
+.role-cell { padding: 8px 12px; font-weight: 500; color: var(--text); line-height: 1.3; }
+.role-time { display: block; font-size: 10px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+.qual-badge {
+  display: inline-block; background: #fff0e8; color: #8a3000;
+  font-size: 9px; font-weight: 600; letter-spacing: 0.05em;
+  padding: 1px 5px; border-radius: 3px; margin-top: 3px; text-transform: uppercase;
+}
+.cat-row td {
+  background: var(--cream-dark) !important; color: var(--text-mid);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 5px 12px;
+}
+.check-cell { text-align: center; vertical-align: middle; padding: 6px; }
+.check-cell input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--navy); cursor: pointer; }
+
+/* QUAL */
+.qual-info {
+  background: #fff5f0; border: 1px solid #ffb899; border-radius: 8px;
+  padding: 14px 16px; margin-bottom: 16px; font-size: 13px; color: #7a2e00; line-height: 1.5;
+}
+
+/* SUBMIT / SUCCESS */
+.submit-btn {
+  width: 100%; background: var(--navy); color: var(--white);
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: 16px; font-weight: 600; padding: 16px 24px;
+  border-radius: var(--radius); transition: background 0.15s;
+}
+.submit-btn:hover { background: var(--navy-mid); }
+
+.success-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 48px 32px; text-align: center; display: none;
+}
+.success-icon {
+  width: 56px; height: 56px; border-radius: 50%; background: #e8f5ed;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; font-size: 24px;
+}
+.success-box h2 { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; margin-bottom: 10px; }
+.success-box p { color: var(--text-muted); margin-bottom: 6px; }
+.edit-link-box {
+  background: var(--cream); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px 16px; margin: 20px auto; max-width: 480px;
+  font-size: 13px; word-break: break-all; color: var(--navy); font-family: monospace;
+}
+.reset-link {
+  display: inline-block; margin-top: 20px;
+  font-size: 13px; color: var(--text-muted); cursor: pointer; text-decoration: underline;
+}
+.error-msg {
+  background: #fdecea; border: 1px solid #f5c2c0; border-radius: 8px;
+  padding: 12px 16px; margin-top: 16px; font-size: 13px; color: #7a1f1f; display: none;
+}
+
+/* ══════════════════════════════════════════════
+   ADMIN DASHBOARD
+══════════════════════════════════════════════ */
+.admin-hero { background: var(--navy); padding: 32px; color: var(--white); }
+.admin-hero h1 { font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; }
+.admin-hero p { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 4px; }
+
+.admin-wrap { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
+
+.stats-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 24px; max-width: 480px; }
+.stat-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+.stat-card .num { font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; color: var(--navy); line-height: 1; }
+.stat-card .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.stat-card.alert .num { color: #b83232; }
+
+.admin-tabs { display: flex; gap: 2px; margin-bottom: 24px; border-bottom: 2px solid var(--border); }
+.admin-tab {
+  background: none; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  padding: 10px 20px; color: var(--text-muted);
+  border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s;
+}
+.admin-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+.admin-tab:hover:not(.active) { color: var(--text-mid); }
+.admin-panel { display: none; }
+.admin-panel.active { display: block; }
+
+.meet-selector-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.meet-selector-wrap label { font-size: 13px; font-weight: 600; color: var(--text-mid); }
+select {
+  border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 14px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  background: var(--white); color: var(--text); cursor: pointer; outline: none;
+}
+select:focus { border-color: var(--navy); }
+
+/* COVERAGE */
+.coverage-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.coverage-table th { background: var(--navy); color: var(--white); font-weight: 500; font-size: 12px; padding: 10px 14px; text-align: left; }
+.coverage-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.coverage-table tr:last-child td { border-bottom: none; }
+.coverage-table tr:hover td { background: rgba(15,41,66,0.02); }
+.coverage-table .cat-head td { background: var(--cream-dark); font-size: 11px; font-weight: 700; color: var(--text-mid); letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; }
+.coverage-table .cat-head td { background: var(--cream-dark) !important; }
+
+.avail-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+.avail-pill.good   { background: #e8f5ed; color: #1a6b3a; }
+.avail-pill.warn   { background: #fff0e8; color: #7a2e00; }
+.avail-pill.danger { background: #fdecea; color: #b83232; }
+
+.assign-btn { background: var(--navy); color: var(--white); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 6px; transition: background 0.15s; }
+.assign-btn:hover { background: var(--navy-mid); }
+
+/* ROSTER */
+.volunteer-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.volunteer-table th { background: var(--navy); color: var(--white); font-weight: 500; font-size: 12px; padding: 10px 14px; text-align: left; }
+.volunteer-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.volunteer-table tr:last-child td { border-bottom: none; }
+.volunteer-table tr:hover td { background: rgba(15,41,66,0.02); }
+.su-badge { display: inline-block; background: #e8f0fb; color: #0c447c; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+.avail-dots { display: flex; gap: 3px; flex-wrap: wrap; }
+.avail-dot { width: 16px; height: 16px; border-radius: 3px; font-size: 8px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: white; }
+.avail-dot.yes { background: var(--navy); }
+.avail-dot.no  { background: var(--border); }
+
+/* PERKS */
+.perk-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); overflow-x: auto; display: block; }
+.perk-table th { background: var(--navy); color: var(--white); font-weight: 500; font-size: 12px; padding: 10px 14px; text-align: left; white-space: nowrap; }
+.perk-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; white-space: nowrap; }
+.perk-table tr:last-child td { border-bottom: none; }
+.perk-table input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--navy); cursor: pointer; }
+
+.empty-state { text-align: center; padding: 48px 24px; color: var(--text-muted); font-size: 14px; }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,25,45,0.75);
+  display: none; align-items: center; justify-content: center;
+  z-index: 200;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: #ffffff; border-radius: 12px; padding: 28px;
+  max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.35); position: relative; z-index: 201;
+}
+.modal h2 { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; margin-bottom: 4px; }
+.modal .subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 18px; }
+.modal-close { float: right; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--text-muted); margin-top: -4px; line-height: 1; }
+.modal-close:hover { color: var(--text); }
+
+.avail-name-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.avail-name-row:last-child { border-bottom: none; }
+.avail-name-row .name { font-weight: 500; }
+.avail-name-row .sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.avail-name-row.conflict { opacity: 0.42; }
+.modal-assign-btn { background: var(--navy); color: var(--white); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 12px; padding: 5px 14px; border-radius: 6px; white-space: nowrap; }
+.modal-assign-btn.assigned { background: #1a6b3a; cursor: default; }
+.modal-assign-btn:disabled { background: var(--text-muted); cursor: not-allowed; }
+.unassign-link { font-size: 11px; color: var(--text-muted); cursor: pointer; text-decoration: underline; margin-left: 8px; }
+.unassign-link:hover { color: #b83232; }
+.flexible-box {
+  background: #f0f4ff; border: 1.5px solid #b8c8f0; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 18px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.flexible-box input[type="checkbox"] {
+  width: 20px; height: 20px; accent-color: var(--navy);
+  cursor: pointer; flex-shrink: 0; margin-top: 2px;
+}
+.flexible-box-label { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+.flexible-box-hint  { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.flexible-tag {
+  display: inline-block; background: #dce8ff; color: #1a3a8a;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+  padding: 1px 6px; border-radius: 3px; text-transform: uppercase; margin-left: 5px;
+}
+.coach-widget {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px;
+}
+.coach-widget-title {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-mid); margin-bottom: 12px;
+}
+.coach-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+}
+.coach-card {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.coach-card .coach-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.coach-card .coach-count {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; font-weight: 400; color: var(--navy); line-height: 1;
+}
+.coach-card.has-athletes { border-color: rgba(15,41,66,0.3); background: #eef3fa; }
+.coach-card .coach-count.has-athletes { color: var(--navy); }
+.export-btn {
+  background: none; border: 1.5px solid var(--gold); border-radius: 8px;
+  padding: 7px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--gold);
+  cursor: pointer; transition: all 0.15s;
+}
+.export-btn:hover { background: var(--gold); color: var(--white); }
+.edit-modal {
+  max-width: 92vw;
+  width: 1000px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.edit-fields {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-bottom: 18px;
+}
+.edit-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.edit-avail-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  font-size: 13px; font-weight: 600; color: var(--text-mid);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 10px 0 8px;
+  border-top: 1px solid var(--border);
+}
+.edit-grid-scroll {
+  overflow-x: auto; overflow-y: auto;
+  max-height: 340px;
+  border: 1px solid var(--border); border-radius: 8px;
+  flex-shrink: 0;
+}
+.edit-avail-grid { min-width: 700px; }
+.edit-avail-grid thead th { position: sticky; top: 0; z-index: 2; }
+.edit-avail-grid .role-col { position: sticky; left: 0; z-index: 3; background: var(--navy-mid); }
+.edit-avail-grid tbody td.role-cell { position: sticky; left: 0; z-index: 1; background: var(--white); border-right: 2px solid var(--border); }
+.edit-avail-grid tbody tr:nth-child(even) td.role-cell { background: rgba(15,41,66,0.02); }
+.modal-save-btn {
+  background: var(--navy); color: var(--white); border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+  padding: 10px 24px; border-radius: 8px; transition: background 0.15s;
+}
+.modal-save-btn:hover { background: var(--navy-mid); }
+.modal-cancel-btn {
+  background: none; border: 1.5px solid var(--border); color: var(--text-mid);
+  cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  padding: 10px 20px; border-radius: 8px; transition: all 0.15s;
+}
+.modal-cancel-btn:hover { border-color: var(--navy); color: var(--navy); }
+.edit-btn {
+  background: none; border: 1.5px solid var(--border); border-radius: 6px;
+  padding: 3px 10px; font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 600; color: var(--text-muted);
+  cursor: pointer; transition: all 0.15s;
+}
+.edit-btn:hover { border-color: var(--navy); color: var(--navy); }
+.dup-badge {
+  display: inline-block; margin-left: 8px;
+  background: #fdecea; color: #7a1f1f;
+  font-size: 10px; font-weight: 700; border: 1px solid #f5c2c0;
+  border-radius: 4px; padding: 1px 6px; cursor: pointer;
+  vertical-align: middle; font-family: 'DM Sans', sans-serif;
+  transition: background 0.15s;
+}
+.dup-badge:hover { background: #f5c2c0; }
+.dup-row { background: rgba(178,50,50,0.02); }
+.dup-highlight { background: #fff3cd !important; outline: 2px solid #e8a800; }
+.delete-record-btn {
+  background: none; border: 1.5px solid #f5c2c0; border-radius: 6px;
+  padding: 7px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600; color: #b83232;
+  cursor: pointer; transition: all 0.15s;
+}
+.delete-record-btn:hover { background: #fdecea; border-color: #b83232; }
+.confirm-delete-btn {
+  background: #b83232; color: var(--white); border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 6px; transition: background 0.15s;
+}
+.confirm-delete-btn:hover { background: #8a1f1f; }
+.coach-card-clickable { cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; }
+.coach-card-clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(15,41,66,0.15); }
+.coach-athlete-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.coach-athlete-row:last-child { border-bottom: none; }
+
+/* SEASON VIEW */
+.season-scroll { overflow-x: auto; }
+.season-grid {
+  border-collapse: collapse; font-size: 11px;
+  background: var(--white); border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--border);
+  min-width: 900px; width: 100%;
+}
+.season-grid th {
+  background: var(--navy); color: var(--white);
+  font-weight: 500; font-size: 11px; padding: 8px 6px;
+  text-align: center; white-space: nowrap;
+}
+.season-grid th.role-col {
+  text-align: left; padding: 8px 12px; min-width: 180px;
+  position: sticky; left: 0; z-index: 2; background: var(--navy-mid);
+}
+.season-grid td {
+  border: 1px solid var(--border); padding: 0;
+  vertical-align: middle; text-align: center;
+}
+.season-grid td.role-cell {
+  text-align: left; padding: 6px 12px; font-weight: 500;
+  font-size: 12px; color: var(--text);
+  position: sticky; left: 0; background: var(--white);
+  border-right: 2px solid var(--border); z-index: 1;
+}
+.season-grid tr:nth-child(even) td.role-cell { background: rgba(15,41,66,0.02); }
+.season-grid .cat-head td {
+  background: var(--cream-dark); font-size: 10px; font-weight: 700;
+  color: var(--text-mid); letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 5px 12px; text-align: left;
+}
+.season-grid .cat-head td.role-cell { background: var(--cream-dark); }
+.season-cell {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 4px 2px; min-height: 32px; gap: 1px;
+}
+.season-cell.full    { background: #e8f5ed; }
+.season-cell.partial { background: #fff8e1; }
+.season-cell.empty   { background: #fdecea; }
+.season-cell.none    { background: transparent; }
+.season-initials {
+  font-size: 10px; font-weight: 600; color: var(--navy);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 54px; cursor: default;
+}
+.season-legend {
+  display: flex; gap: 16px; align-items: center;
+  font-size: 12px; color: var(--text-muted); margin-bottom: 14px; flex-wrap: wrap;
+}
+.legend-swatch {
+  width: 14px; height: 14px; border-radius: 3px;
+  display: inline-block; margin-right: 5px; vertical-align: middle;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><div class="dot"></div>CNW All-Comers Volunteer Hub</div>
+</nav>
+
+<!-- ══════════════════════════════════
+     VOLUNTEER PAGE
+══════════════════════════════════ -->
+  <div class="form-hero">
+    <div class="season-tag">2026 Season · 12 Meets</div>
+    <h1>Volunteer for <em>All-Comers</em></h1>
+    <p>Tell us which meets you're available for and what roles you can fill. Takes about 3 minutes.</p>
+  </div>
+
+  <div class="form-wrap">
+    <div id="volunteer-form">
+      <div class="form-section">
+        <div class="form-section-header"><div class="section-num">1</div>Your information</div>
+        <div class="form-section-body">
+          <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div>
+              <label class="field-label">Full name</label>
+              <input type="text" id="vol-name" placeholder="Jane Smith">
+            </div>
+            <div>
+              <label class="field-label">Email address</label>
+              <input type="email" id="vol-email" placeholder="jane@example.com">
+              <div class="field-hint">We'll email you a link to update your availability if your schedule changes.</div>
+            </div>
+          </div>
+          <div class="field-row" style="margin-top:14px;">
+            <label class="field-label">If you are a CNW athlete, who is your main coach for Tuesday/Wednesday night practices? <span class="optional">(optional)</span></label>
+            <select id="vol-coach" style="width:100%;max-width:360px;">
+              <option value="">Not applicable / I'm not a CNW athlete</option>
+              <option value="Spencer Walsh">Spencer Walsh</option>
+              <option value="Nick Stenger">Nick Stenger</option>
+              <option value="Adam Young">Adam Young</option>
+              <option value="Sarah Reynolds">Sarah Reynolds</option>
+              <option value="Mia Tarte">Mia Tarte</option>
+              <option value="Tom Anderson">Tom Anderson</option>
+              <option value="Jack Bolas">Jack Bolas</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header"><div class="section-num">2</div>Availability &amp; roles</div>
+        <div class="form-section-body">
+          <div class="grid-intro">
+            Check every box where you're available for that role on that date. Roles marked <strong>Exp. req.</strong> require prior experience or training — please check those individually if you're qualified.<br><br>
+            <strong>Flexible?</strong> If you're open to filling any non-experience-required role for a given meet, just check the <em>"I'm flexible"</em> box for that date — it will fill in all eligible roles automatically. You can still uncheck specific roles if needed.
+          </div>
+          <div class="grid-scroll">
+            <table class="avail-grid" id="avail-grid"></table>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header"><div class="section-num">3</div>Experience &amp; qualifications</div>
+        <div class="form-section-body">
+          <div class="qual-info">
+            If you checked any <strong>Exp. req.</strong> roles above, please briefly describe your relevant experience. Our coordinators will verify qualifications before making assignments.
+          </div>
+          <div class="field-row">
+            <label class="field-label">Relevant experience <span class="optional">(optional)</span></label>
+            <textarea id="vol-quals" placeholder="e.g. Clerked at high school meets for 3 years, USATF certified starter, etc."></textarea>
+          </div>
+          <div class="field-row">
+            <label class="field-label">Anything else we should know? <span class="optional">(optional)</span></label>
+            <textarea id="vol-notes" placeholder="Physical limitations, preferred partner to work with, etc." style="min-height:60px;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="error-msg" id="error-msg"></div>
+      <button class="submit-btn" id="submit-btn" onclick="submitForm()">Submit my availability →</button>
+    </div>
+
+    <div class="success-box" id="success-box">
+      <div class="success-icon">✓</div>
+      <h2>Thanks, <span id="success-name"></span>!</h2>
+      <p id="success-update-msg"></p>
+      <p style="margin-top:8px;">Use the link below to update your availability if your schedule changes:</p>
+      <div class="edit-link-box" id="edit-link-display"></div>
+      <p style="font-size:12px;color:var(--text-muted);">We've also sent this link to your email address.</p>
+    </div>
+  </div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// STATIC DATA
+// ══════════════════════════════════════════════════════
+const MEETS = [
+  {id:1,  label:"Meet 1 — Jun 3",   date:"2026-06-03"},
+  {id:2,  label:"Meet 2 — Jun 10",  date:"2026-06-10"},
+  {id:3,  label:"Meet 3 — Jun 17",  date:"2026-06-17"},
+  {id:4,  label:"Meet 4 — Jun 24",  date:"2026-06-24"},
+  {id:5,  label:"Meet 5 — Jul 1",   date:"2026-07-01"},
+  {id:6,  label:"Meet 6 — Jul 8",   date:"2026-07-08"},
+  {id:7,  label:"Meet 7 — Jul 15",  date:"2026-07-15"},
+  {id:8,  label:"Meet 8 — Jul 22",  date:"2026-07-22"},
+  {id:9,  label:"Meet 9 — Jul 29",  date:"2026-07-29"},
+  {id:10, label:"Meet 10 — Aug 5",  date:"2026-08-05"},
+  {id:11, label:"Meet 11 — Aug 12", date:"2026-08-12"},
+  {id:12, label:"Meet 12 — Aug 19", date:"2026-08-19"},
+];
+const SHORT_DATES = ["Jun 3","Jun 10","Jun 17","Jun 24","Jul 1","Jul 8","Jul 15","Jul 22","Jul 29","Aug 5","Aug 12","Aug 19"];
+
+// Returns today's date string in PST (YYYY-MM-DD)
+function getTodayPST() {
+  return new Date().toLocaleDateString('en-CA', {timeZone:'America/Los_Angeles'});
+}
+function isMeetPast(meet) {
+  return meet.date < getTodayPST();
+}
+
+
+const ROLES = [
+  // Administrative
+  {id:1,  name:"Meet Director",                        time:"2:00–10:00pm", cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:2,  name:"Entry Gate",                           time:"4:30–9:00pm",  cat:"Administrative", exp:false, slots:4, priority:1},
+  {id:3,  name:"Entry Gate / Season Pass",             time:"5:30–7:00pm",  cat:"Administrative", exp:false, slots:1, priority:1},
+  {id:4,  name:"Waiver Desk Chief",                    time:"4:45–8:30pm",  cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:5,  name:"Waiver Desk",                          time:"5:00–8:30pm",  cat:"Administrative", exp:false, slots:1, priority:1},
+  {id:6,  name:"Announcer",                            time:"5:00–9:45pm",  cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:7,  name:"Volunteer Coordinator",                time:"varies",       cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:9,  name:"Clerking Chief",                       time:"5:45–9:00pm",  cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:10, name:"Clerk Asst",                           time:"5:45–9:00pm",  cat:"Administrative", exp:false, slots:1, priority:3},
+  // Track
+  {id:16, name:"Starter",                              time:"5:45–9:15pm",  cat:"Track",          exp:true,  slots:2, priority:1},
+  {id:17, name:"Starter Trainee",                      time:"5:45–9:15pm",  cat:"Track",          exp:false, slots:2, priority:2},
+  {id:18, name:"Kids Track Start Asst",                time:"5:45–7:15pm",  cat:"Track",          exp:false, slots:1, priority:1},
+  {id:19, name:"Line Clerk",                           time:"6:30–9:45pm",  cat:"Track",          exp:true,  slots:1, priority:1},
+  {id:20, name:"Line Clerk Assist",                    time:"6:30–9:45pm",  cat:"Track",          exp:false, slots:1, priority:1},
+  {id:22, name:"Hand-Timing Chief",                    time:"5:45–9:45pm",  cat:"Track",          exp:true,  slots:1, priority:1},
+  {id:23, name:"Finish Line Kids / Open",              time:"5:45–9:45pm",  cat:"Track",          exp:false, slots:1, priority:1},
+  {id:24, name:"Finish Line Kids",                     time:"5:45–8:00pm",  cat:"Track",          exp:false, slots:3, priority:1},
+  {id:25, name:"F.A.T. Chief",                         time:"6:30–9:00pm",  cat:"Track",          exp:true,  slots:1, priority:1},
+  {id:26, name:"F.A.T. Asst",                          time:"6:30–9:00pm",  cat:"Track",          exp:false, slots:2, priority:1},
+  // Field
+  {id:29, name:"High Jump Chief — Kids",               time:"5:45–7:00pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:30, name:"High Jump Asst — Kids",                time:"5:45–7:00pm",  cat:"Field",          exp:false, slots:1, priority:1},
+  {id:31, name:"High Jump Chief — Open",               time:"6:50–8:30pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:32, name:"High Jump Asst — Open",                time:"6:50–8:30pm",  cat:"Field",          exp:false, slots:1, priority:1},
+  {id:33, name:"Pole Vault Chief",                     time:"5:45–8:30pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:34, name:"Pole Vault Asst",                      time:"5:45–9:30pm",  cat:"Field",          exp:false, slots:2, priority:2},
+  {id:35, name:"LJ / TJ Chief",                        time:"5:45–10:00pm", cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:36, name:"LJ / TJ Asst — Shift 1",              time:"5:45–8:00pm",  cat:"Field",          exp:false, slots:3, priority:1},
+  {id:37, name:"LJ / TJ Asst — Shift 2",              time:"7:45–10:00pm", cat:"Field",          exp:false, slots:4, priority:1},
+  {id:39, name:"Shot Put Chief",                       time:"6:15–8:30pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:40, name:"Shot Put Asst",                        time:"6:15–8:30pm",  cat:"Field",          exp:false, slots:2, priority:1},
+  {id:41, name:"Discus Throw Chief",                   time:"7:00–9:00pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:42, name:"Discus Asst",                          time:"7:00–9:00pm",  cat:"Field",          exp:false, slots:2, priority:3},
+  {id:43, name:"TurboJav\u2122 Chief",                time:"5:45–7:30pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:44, name:"TurboJav\u2122 Asst",                 time:"5:45–7:30pm",  cat:"Field",          exp:false, slots:1, priority:1},
+  {id:45, name:"Javelin Throw Chief",                  time:"6:30–9:00pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:46, name:"Javelin Asst",                         time:"6:30–9:00pm",  cat:"Field",          exp:false, slots:3, priority:2},
+];
+const CATS = ["Administrative","Track","Field"];
+
+// ══════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════
+const VOLUNTEER_HIDDEN_ROLES = new Set([1, 7]); // Meet Director, Volunteer Coordinator — pre-assigned, not shown on form
+
+// ══════════════════════════════════════════════════════
+// VOLUNTEER FORM
+// ══════════════════════════════════════════════════════
+function buildGrid() {
+  const tbl = document.getElementById('avail-grid');
+  const visibleMeets = MEETS.filter(m => !isMeetPast(m));
+
+  if (!visibleMeets.length) {
+    tbl.innerHTML = '<tbody><tr><td colspan="2" style="padding:24px;color:var(--text-muted);font-size:13px;">The 2026 All-Comers season has concluded. Thank you for volunteering!</td></tr></tbody>';
+    return;
+  }
+
+  let html = '<thead><tr><th class="role-col">Role</th>';
+  visibleMeets.forEach(m => html += `<th>${SHORT_DATES[m.id-1]}</th>`);
+  html += '</tr></thead><tbody>';
+
+  // ── FLEXIBLE ROW ──
+  html += `<tr style="background:rgba(30,60,180,0.05);">
+    <td class="role-cell" style="font-style:italic;color:var(--navy);font-size:13px;">
+      I'm flexible — any role
+      <span class="role-time" style="font-style:normal;">Check to auto-fill all non-exp. roles for that date</span>
+    </td>`;
+  visibleMeets.forEach(m => html += `<td class="check-cell"><input type="checkbox" id="flex_${m.id}" data-meet="${m.id}" onchange="handleFlexibleChange(${m.id})"></td>`);
+  html += '</tr>';
+
+  // ── SEPARATOR ──
+  html += `<tr><td colspan="${visibleMeets.length+1}" style="padding:0;height:3px;background:var(--navy);opacity:0.15;"></td></tr>`;
+
+  // ── ROLE ROWS (excluding pre-assigned roles) ──
+  CATS.forEach(cat => {
+    const visibleRoles = ROLES.filter(r => r.cat === cat && !VOLUNTEER_HIDDEN_ROLES.has(r.id));
+    if (!visibleRoles.length) return;
+    html += `<tr class="cat-row"><td colspan="${visibleMeets.length+1}">${cat}</td></tr>`;
+    if (cat !== 'Administrative') {
+      html += `<tr><td style="padding:4px 12px;font-size:10px;color:var(--text-muted);font-style:italic;border:1px solid var(--border);background:rgba(15,41,66,0.03);">Role</td>`;
+      visibleMeets.forEach(m => html += `<td style="text-align:center;font-size:10px;font-weight:600;color:var(--text-mid);padding:4px 2px;border:1px solid var(--border);background:rgba(15,41,66,0.03);">${SHORT_DATES[m.id-1]}</td>`);
+      html += '</tr>';
+    }
+    visibleRoles.forEach(role => {
+      const nudge = role.slots >= 3
+        ? `<br><span style="display:inline-block;font-size:10px;color:var(--gold);font-weight:600;font-style:italic;margin-top:3px;">Many needed!</span>`
+        : '';
+      html += `<tr><td class="role-cell">${role.name}${nudge}<br><span class="role-time">${role.time}</span>${role.exp?'<br><span class="qual-badge">Exp. req.</span>':''}</td>`;
+      visibleMeets.forEach(m => html += `<td class="check-cell"><input type="checkbox" id="cb_${role.id}_${m.id}"></td>`);
+      html += '</tr>';
+    });
+  });
+  html += '</tbody>';
+  tbl.innerHTML = html;
+}
+
+function handleFlexibleChange(meetId) {
+  const isFlexible = document.getElementById(`flex_${meetId}`).checked;
+  // Check or uncheck all non-exp, non-hidden roles for this meet only
+  ROLES.filter(r => !r.exp && !VOLUNTEER_HIDDEN_ROLES.has(r.id)).forEach(role => {
+    const cb = document.getElementById(`cb_${role.id}_${meetId}`);
+    if (cb) cb.checked = isFlexible;
+  });
+}
+
+async function submitForm() {
+  const name  = document.getElementById('vol-name').value.trim();
+  const email = document.getElementById('vol-email').value.trim();
+  const errEl = document.getElementById('error-msg');
+  errEl.style.display = 'none';
+
+  if (!name || !email) {
+    errEl.textContent = 'Please enter your name and email address before submitting.';
+    errEl.style.display = 'block'; return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.style.display = 'block'; return;
+  }
+
+  // Build availability map
+  const avail = {};
+  ROLES.forEach(role => {
+    MEETS.forEach(meet => {
+      if (document.getElementById(`cb_${role.id}_${meet.id}`)?.checked) {
+        if (!avail[meet.id]) avail[meet.id] = [];
+        avail[meet.id].push(role.id);
+      }
+    });
+  });
+
+    const availability = [];
+  ROLES.forEach(role => {
+    MEETS.forEach(meet => {
+      if (document.getElementById(`cb_${role.id}_${meet.id}`)?.checked) availability.push({roleId: role.id, meetId: meet.id});
+    });
+  });
+  const flexibleMeets = MEETS.filter(m => document.getElementById(`flex_${m.id}`)?.checked).map(m => m.id);
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const payload = {
+    action: window._editToken ? 'updateVolunteer' : 'submitVolunteer',
+    name, email,
+    coach: document.getElementById('vol-coach').value,
+    quals: document.getElementById('vol-quals').value,
+    notes: document.getElementById('vol-notes').value,
+    availability, flexibleMeets,
+    token: window._editToken || null,
+    siteUrl: window.location.origin + window.location.pathname,
+  };
+
+  try {
+    // POST with no-cors — Apps Script doesn't support CORS headers on responses.
+    // We send the data and then poll via JSONP to get the result.
+    const payload_str = JSON.stringify(payload);
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: payload_str,
+    });
+    // Since no-cors gives us an opaque response, we can't read it directly.
+    // Instead, show success and generate the edit link from the known pattern.
+    // The token is echoed back via the edit-link approach below.
+    // For a new submission we poll for the token via JSONP.
+    const token = await jsonpGet(SCRIPT_URL, {action: 'getTokenByEmail', email});
+    const editLink = token
+      ? `${payload.siteUrl}?edit=${token}`
+      : payload.siteUrl;
+    document.getElementById('success-name').textContent = name.split(' ')[0];
+    document.getElementById('success-update-msg').textContent = window._editToken
+      ? `We found an existing record for ${email} and updated it with your new availability.`
+      : `Your availability has been recorded for the 2026 All-Comers season.`;
+    document.getElementById('edit-link-display').textContent = editLink;
+    document.getElementById('volunteer-form').style.display = 'none';
+    document.getElementById('success-box').style.display = 'block';
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Submit my availability →';
+    errEl.textContent = 'Something went wrong. Please try again or contact the volunteer coordinator.';
+    errEl.style.display = 'block';
+  }
+}
+
+// JSONP helper — used for GET requests to bypass CORS
+function jsonpGet(url, params) {
+  return new Promise((resolve, reject) => {
+    const cbName = 'cb_' + Math.random().toString(36).slice(2);
+    const qs = Object.entries({...params, callback: cbName})
+      .map(([k,v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+    const script = document.createElement('script');
+    window[cbName] = (data) => {
+      delete window[cbName];
+      document.head.removeChild(script);
+      if (data.error) reject(new Error(data.error));
+      else resolve(data);
+    };
+    script.src = `${url}?${qs}`;
+    script.onerror = () => { delete window[cbName]; reject(new Error('JSONP failed')); };
+    document.head.appendChild(script);
+  });
+}
+
+async function checkEditToken() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('edit');
+  if (!token) return;
+  try {
+    const data = await jsonpGet(SCRIPT_URL, {action: 'getVolunteer', token});
+    if (data.error) return;
+    document.getElementById('vol-name').value  = data.name  || '';
+    document.getElementById('vol-email').value = data.email || '';
+    document.getElementById('vol-coach').value = data.coach || '';
+    document.getElementById('vol-quals').value = data.quals || '';
+    document.getElementById('vol-notes').value = data.notes || '';
+    if (data.availability) {
+      data.availability.forEach(({roleId, meetId}) => {
+        const cb = document.getElementById(`cb_${roleId}_${meetId}`);
+        if (cb) cb.checked = true;
+      });
+    }
+    document.getElementById('submit-btn').textContent = 'Update my availability →';
+    window._editToken = token;
+  } catch(e) { /* silent */ }
+}
+
+function resetForm() {
+  document.getElementById('volunteer-form').style.display = 'block';
+  document.getElementById('success-box').style.display = 'none';
+  document.getElementById('vol-name').value = '';
+  document.getElementById('vol-email').value = '';
+  document.getElementById('vol-coach').value = '';
+  document.getElementById('vol-quals').value = '';
+  document.getElementById('vol-notes').value = '';
+  MEETS.forEach(m => {
+    const flex = document.getElementById(`flex_${m.id}`);
+    if (flex) flex.checked = false;
+  });
+  ROLES.forEach(r => MEETS.forEach(m => {
+    const cb = document.getElementById(`cb_${r.id}_${m.id}`);
+    if (cb) cb.checked = false;
+  }));
+}
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL'; // Replace with your deployed Apps Script URL (see SETUP.md Step 4)
+buildGrid();
+checkEditToken();
+</script>
+</body>
+</html>

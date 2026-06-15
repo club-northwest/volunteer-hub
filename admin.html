@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coordinator Dashboard · CNW All-Comers 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f2942;
+  --navy-mid: #1a3a5c;
+  --gold: #ff7438;
+  --gold-light: #ff9a6c;
+  --cream: #f7f3ee;
+  --cream-dark: #ede8e1;
+  --text: #1a1410;
+  --text-mid: #4a3f35;
+  --text-muted: #8a7a6a;
+  --white: #ffffff;
+  --border: rgba(15,41,66,0.15);
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--navy); padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px; position: sticky; top: 0; z-index: 100;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--white); font-family: 'DM Serif Display', serif; font-size: 18px;
+}
+.nav-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+
+
+/* ══════════════════════════════════════════════
+   VOLUNTEER FORM
+══════════════════════════════════════════════ */
+.form-hero {
+  background: var(--navy); color: var(--white);
+  padding: 48px 32px 40px; text-align: center;
+}
+.form-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.form-hero h1 em { color: var(--gold-light); font-style: italic; }
+.form-hero p { color: rgba(255,255,255,0.7); font-size: 15px; max-width: 520px; margin: 0 auto; }
+.season-tag {
+  display: inline-block; background: var(--gold); color: var(--navy);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+}
+
+.form-wrap { max-width: 820px; margin: 0 auto; padding: 32px 24px 64px; }
+
+.form-section {
+  background: var(--white); border-radius: var(--radius);
+  border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden;
+}
+.form-section-header {
+  background: var(--navy); color: var(--white); padding: 14px 20px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gold); color: var(--navy);
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.form-section-body { padding: 20px; }
+.field-row { margin-bottom: 16px; }
+.field-row:last-child { margin-bottom: 0; }
+.field-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-mid); margin-bottom: 6px; }
+.field-label .optional { font-weight: 400; color: var(--text-muted); }
+input[type="text"], input[type="email"], textarea {
+  width: 100%; border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 10px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 15px; color: var(--text); background: var(--cream);
+  transition: border-color 0.15s; outline: none;
+}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: var(--navy); background: var(--white);
+}
+textarea { resize: vertical; min-height: 80px; }
+.field-hint { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+
+/* GRID */
+.grid-intro { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+.grid-scroll { overflow-x: auto; }
+.avail-grid { border-collapse: collapse; width: 100%; min-width: 700px; font-size: 12px; }
+.avail-grid th, .avail-grid td { border: 1px solid var(--border); padding: 0; }
+.avail-grid thead th {
+  background: var(--navy); color: var(--white);
+  font-weight: 500; font-size: 11px; text-align: center;
+  padding: 8px 4px; white-space: nowrap;
+}
+.avail-grid thead th.role-col {
+  background: var(--navy-mid); text-align: left; padding: 8px 12px; min-width: 200px;
+}
+.avail-grid tbody tr:nth-child(even) td { background: rgba(15,41,66,0.02); }
+.avail-grid tbody tr:hover td { background: rgba(200,146,42,0.06); }
+.role-cell { padding: 8px 12px; font-weight: 500; color: var(--text); line-height: 1.3; }
+.role-time { display: block; font-size: 10px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+.qual-badge {
+  display: inline-block; background: #fff0e8; color: #8a3000;
+  font-size: 9px; font-weight: 600; letter-spacing: 0.05em;
+  padding: 1px 5px; border-radius: 3px; margin-top: 3px; text-transform: uppercase;
+}
+.cat-row td {
+  background: var(--cream-dark) !important; color: var(--text-mid);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 5px 12px;
+}
+.check-cell { text-align: center; vertical-align: middle; padding: 6px; }
+.check-cell input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--navy); cursor: pointer; }
+
+/* QUAL */
+.qual-info {
+  background: #fff5f0; border: 1px solid #ffb899; border-radius: 8px;
+  padding: 14px 16px; margin-bottom: 16px; font-size: 13px; color: #7a2e00; line-height: 1.5;
+}
+
+/* SUBMIT / SUCCESS */
+.submit-btn {
+  width: 100%; background: var(--navy); color: var(--white);
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: 16px; font-weight: 600; padding: 16px 24px;
+  border-radius: var(--radius); transition: background 0.15s;
+}
+.submit-btn:hover { background: var(--navy-mid); }
+
+.success-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 48px 32px; text-align: center; display: none;
+}
+.success-icon {
+  width: 56px; height: 56px; border-radius: 50%; background: #e8f5ed;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; font-size: 24px;
+}
+.success-box h2 { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; margin-bottom: 10px; }
+.success-box p { color: var(--text-muted); margin-bottom: 6px; }
+.edit-link-box {
+  background: var(--cream); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px 16px; margin: 20px auto; max-width: 480px;
+  font-size: 13px; word-break: break-all; color: var(--navy); font-family: monospace;
+}
+.reset-link {
+  display: inline-block; margin-top: 20px;
+  font-size: 13px; color: var(--text-muted); cursor: pointer; text-decoration: underline;
+}
+.error-msg {
+  background: #fdecea; border: 1px solid #f5c2c0; border-radius: 8px;
+  padding: 12px 16px; margin-top: 16px; font-size: 13px; color: #7a1f1f; display: none;
+}
+
+/* ══════════════════════════════════════════════
+   ADMIN DASHBOARD
+══════════════════════════════════════════════ */
+.admin-hero { background: var(--navy); padding: 32px; color: var(--white); }
+.admin-hero h1 { font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; }
+.admin-hero p { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 4px; }
+
+.admin-wrap { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
+
+.stats-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 24px; max-width: 480px; }
+.stat-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+.stat-card .num { font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; color: var(--navy); line-height: 1; }
+.stat-card .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.stat-card.alert .num { color: #b83232; }
+
+.admin-tabs { display: flex; gap: 2px; margin-bottom: 24px; border-bottom: 2px solid var(--border); }
+.admin-tab {
+  background: none; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  padding: 10px 20px; color: var(--text-muted);
+  border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s;
+}
+.admin-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+.admin-tab:hover:not(.active) { color: var(--text-mid); }
+.admin-panel { display: none; }
+.admin-panel.active { display: block; }
+
+.meet-selector-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.meet-selector-wrap label { font-size: 13px; font-weight: 600; color: var(--text-mid); }
+select {
+  border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 14px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  background: var(--white); color: var(--text); cursor: pointer; outline: none;
+}
+select:focus { border-color: var(--navy); }
+
+/* COVERAGE */
+.coverage-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.coverage-table th { background: var(--navy); color: var(--white); font-weight: 500; font-size: 12px; padding: 10px 14px; text-align: left; }
+.coverage-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.coverage-table tr:last-child td { border-bottom: none; }
+.coverage-table tr:hover td { background: rgba(15,41,66,0.02); }
+.coverage-table .cat-head td { background: var(--cream-dark); font-size: 11px; font-weight: 700; color: var(--text-mid); letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; }
+.coverage-table .cat-head td { background: var(--cream-dark) !important; }
+
+.avail-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+.avail-pill.good   { background: #e8f5ed; color: #1a6b3a; }
+.avail-pill.warn   { background: #fff0e8; color: #7a2e00; }
+.avail-pill.danger { background: #fdecea; color: #b83232; }
+
+.assign-btn { background: var(--navy); color: var(--white); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 6px; transition: background 0.15s; }
+.assign-btn:hover { background: var(--navy-mid); }
+
+/* ROSTER */
+.volunteer-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.volunteer-table th { background: var(--navy); color: var(--white); font-weight: 500; font-size: 12px; padding: 10px 14px; text-align: left; }
+.volunteer-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.volunteer-table tr:last-child td { border-bottom: none; }
+.volunteer-table tr:hover td { background: rgba(15,41,66,0.02); }
+.su-badge { display: inline-block; background: #e8f0fb; color: #0c447c; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+.avail-dots { display: flex; gap: 3px; flex-wrap: wrap; }
+.avail-dot { width: 16px; height: 16px; border-radius: 3px; font-size: 8px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: white; }
+.avail-dot.yes { background: var(--navy); }
+.avail-dot.no  { background: var(--border); }
+
+/* PERKS */
+.perk-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); overflow-x: auto; display: block; }
+.perk-table th { background: var(--navy); color: var(--white); font-weight: 500; font-size: 12px; padding: 10px 14px; text-align: left; white-space: nowrap; }
+.perk-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; white-space: nowrap; }
+.perk-table tr:last-child td { border-bottom: none; }
+.perk-table input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--navy); cursor: pointer; }
+
+.empty-state { text-align: center; padding: 48px 24px; color: var(--text-muted); font-size: 14px; }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,25,45,0.75);
+  display: none; align-items: center; justify-content: center;
+  z-index: 200;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: #ffffff; border-radius: 12px; padding: 28px;
+  max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.35); position: relative; z-index: 201;
+}
+.modal h2 { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; margin-bottom: 4px; }
+.modal .subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 18px; }
+.modal-close { float: right; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--text-muted); margin-top: -4px; line-height: 1; }
+.modal-close:hover { color: var(--text); }
+
+.avail-name-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.avail-name-row:last-child { border-bottom: none; }
+.avail-name-row .name { font-weight: 500; }
+.avail-name-row .sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.avail-name-row.conflict { opacity: 0.42; }
+.modal-assign-btn { background: var(--navy); color: var(--white); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 12px; padding: 5px 14px; border-radius: 6px; white-space: nowrap; }
+.modal-assign-btn.assigned { background: #1a6b3a; cursor: default; }
+.modal-assign-btn:disabled { background: var(--text-muted); cursor: not-allowed; }
+.unassign-link { font-size: 11px; color: var(--text-muted); cursor: pointer; text-decoration: underline; margin-left: 8px; }
+.unassign-link:hover { color: #b83232; }
+.flexible-box {
+  background: #f0f4ff; border: 1.5px solid #b8c8f0; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 18px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.flexible-box input[type="checkbox"] {
+  width: 20px; height: 20px; accent-color: var(--navy);
+  cursor: pointer; flex-shrink: 0; margin-top: 2px;
+}
+.flexible-box-label { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+.flexible-box-hint  { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.flexible-tag {
+  display: inline-block; background: #dce8ff; color: #1a3a8a;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+  padding: 1px 6px; border-radius: 3px; text-transform: uppercase; margin-left: 5px;
+}
+.coach-widget {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px;
+}
+.coach-widget-title {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-mid); margin-bottom: 12px;
+}
+.coach-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+}
+.coach-card {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.coach-card .coach-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.coach-card .coach-count {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; font-weight: 400; color: var(--navy); line-height: 1;
+}
+.coach-card.has-athletes { border-color: rgba(15,41,66,0.3); background: #eef3fa; }
+.coach-card .coach-count.has-athletes { color: var(--navy); }
+.export-btn {
+  background: none; border: 1.5px solid var(--gold); border-radius: 8px;
+  padding: 7px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--gold);
+  cursor: pointer; transition: all 0.15s;
+}
+.export-btn:hover { background: var(--gold); color: var(--white); }
+.edit-modal {
+  max-width: 92vw;
+  width: 1000px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.edit-fields {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-bottom: 18px;
+}
+.edit-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.edit-avail-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  font-size: 13px; font-weight: 600; color: var(--text-mid);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 10px 0 8px;
+  border-top: 1px solid var(--border);
+}
+.edit-grid-scroll {
+  overflow-x: auto; overflow-y: auto;
+  max-height: 340px;
+  border: 1px solid var(--border); border-radius: 8px;
+  flex-shrink: 0;
+}
+.edit-avail-grid { min-width: 700px; }
+.edit-avail-grid thead th { position: sticky; top: 0; z-index: 2; }
+.edit-avail-grid .role-col { position: sticky; left: 0; z-index: 3; background: var(--navy-mid); }
+.edit-avail-grid tbody td.role-cell { position: sticky; left: 0; z-index: 1; background: var(--white); border-right: 2px solid var(--border); }
+.edit-avail-grid tbody tr:nth-child(even) td.role-cell { background: rgba(15,41,66,0.02); }
+.modal-save-btn {
+  background: var(--navy); color: var(--white); border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+  padding: 10px 24px; border-radius: 8px; transition: background 0.15s;
+}
+.modal-save-btn:hover { background: var(--navy-mid); }
+.modal-cancel-btn {
+  background: none; border: 1.5px solid var(--border); color: var(--text-mid);
+  cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  padding: 10px 20px; border-radius: 8px; transition: all 0.15s;
+}
+.modal-cancel-btn:hover { border-color: var(--navy); color: var(--navy); }
+.edit-btn {
+  background: none; border: 1.5px solid var(--border); border-radius: 6px;
+  padding: 3px 10px; font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 600; color: var(--text-muted);
+  cursor: pointer; transition: all 0.15s;
+}
+.edit-btn:hover { border-color: var(--navy); color: var(--navy); }
+.dup-badge {
+  display: inline-block; margin-left: 8px;
+  background: #fdecea; color: #7a1f1f;
+  font-size: 10px; font-weight: 700; border: 1px solid #f5c2c0;
+  border-radius: 4px; padding: 1px 6px; cursor: pointer;
+  vertical-align: middle; font-family: 'DM Sans', sans-serif;
+  transition: background 0.15s;
+}
+.dup-badge:hover { background: #f5c2c0; }
+.dup-row { background: rgba(178,50,50,0.02); }
+.dup-highlight { background: #fff3cd !important; outline: 2px solid #e8a800; }
+.delete-record-btn {
+  background: none; border: 1.5px solid #f5c2c0; border-radius: 6px;
+  padding: 7px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600; color: #b83232;
+  cursor: pointer; transition: all 0.15s;
+}
+.delete-record-btn:hover { background: #fdecea; border-color: #b83232; }
+.confirm-delete-btn {
+  background: #b83232; color: var(--white); border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 6px; transition: background 0.15s;
+}
+.confirm-delete-btn:hover { background: #8a1f1f; }
+.coach-card-clickable { cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; }
+.coach-card-clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(15,41,66,0.15); }
+.coach-athlete-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.coach-athlete-row:last-child { border-bottom: none; }
+
+/* SEASON VIEW */
+.season-scroll { overflow-x: auto; }
+.season-grid {
+  border-collapse: collapse; font-size: 11px;
+  background: var(--white); border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--border);
+  min-width: 900px; width: 100%;
+}
+.season-grid th {
+  background: var(--navy); color: var(--white);
+  font-weight: 500; font-size: 11px; padding: 8px 6px;
+  text-align: center; white-space: nowrap;
+}
+.season-grid th.role-col {
+  text-align: left; padding: 8px 12px; min-width: 180px;
+  position: sticky; left: 0; z-index: 2; background: var(--navy-mid);
+}
+.season-grid td {
+  border: 1px solid var(--border); padding: 0;
+  vertical-align: middle; text-align: center;
+}
+.season-grid td.role-cell {
+  text-align: left; padding: 6px 12px; font-weight: 500;
+  font-size: 12px; color: var(--text);
+  position: sticky; left: 0; background: var(--white);
+  border-right: 2px solid var(--border); z-index: 1;
+}
+.season-grid tr:nth-child(even) td.role-cell { background: rgba(15,41,66,0.02); }
+.season-grid .cat-head td {
+  background: var(--cream-dark); font-size: 10px; font-weight: 700;
+  color: var(--text-mid); letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 5px 12px; text-align: left;
+}
+.season-grid .cat-head td.role-cell { background: var(--cream-dark); }
+.season-cell {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 4px 2px; min-height: 32px; gap: 1px;
+}
+.season-cell.full    { background: #e8f5ed; }
+.season-cell.partial { background: #fff8e1; }
+.season-cell.empty   { background: #fdecea; }
+.season-cell.none    { background: transparent; }
+.season-initials {
+  font-size: 10px; font-weight: 600; color: var(--navy);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 54px; cursor: default;
+}
+.season-legend {
+  display: flex; gap: 16px; align-items: center;
+  font-size: 12px; color: var(--text-muted); margin-bottom: 14px; flex-wrap: wrap;
+}
+.legend-swatch {
+  width: 14px; height: 14px; border-radius: 3px;
+  display: inline-block; margin-right: 5px; vertical-align: middle;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.conflict-assigned {
+  color: #b83232; font-weight: 600; cursor: default;
+}
+.conflict-assigned::before { content: ''; }
+
+/* PASSWORD PROMPT */
+.password-overlay {
+  position: fixed; inset: 0;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.password-box {
+  background: var(--white); border-radius: 12px;
+  padding: 40px; max-width: 380px; width: 90%; text-align: center;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.4);
+}
+.password-box h2 {
+  font-family: 'DM Serif Display', serif; font-size: 22px;
+  font-weight: 400; margin-bottom: 6px;
+}
+.password-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+.password-box input[type="password"] {
+  width: 100%; border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 15px;
+  color: var(--text); background: var(--cream); outline: none;
+  margin-bottom: 12px; text-align: center; letter-spacing: 0.1em;
+}
+.password-box input[type="password"]:focus { border-color: var(--navy); background: var(--white); }
+.password-box button {
+  width: 100%; background: var(--navy); color: var(--white);
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600; padding: 12px;
+  border-radius: 8px; transition: background 0.15s;
+}
+.password-box button:hover { background: var(--navy-mid); }
+.password-error { color: #b83232; font-size: 12px; margin-top: 8px; display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><div class="dot"></div>CNW All-Comers Volunteer Hub<span style="color:rgba(255,255,255,0.5);font-size:13px;margin-left:8px;font-family:'DM Sans',sans-serif;">· Coordinator Dashboard</span></div>
+</nav>
+
+
+  <div class="admin-hero">
+    <h1>Coordinator Dashboard</h1>
+    <p>CNW All-Comers 2026 · Wednesdays Jun 3 – Aug 19</p>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="num" id="stat-volunteers">—</div>
+        <div class="label">Volunteers signed up</div>
+      </div>
+      <div class="stat-card" id="stat-card-gaps">
+        <div class="num" id="stat-gaps">—</div>
+        <div class="label" id="stat-gaps-label">Unfilled roles</div>
+      </div>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="showAdminTab('coverage', this)">Weekly Coverage</button>
+      <button class="admin-tab" onclick="showAdminTab('season', this)">Season View</button>
+      <button class="admin-tab" onclick="showAdminTab('volunteers', this)">Volunteer Roster</button>
+      <button class="admin-tab" onclick="showAdminTab('perks', this)">Perks &amp; SU Tracker</button>
+    </div>
+
+    <div class="admin-panel active" id="panel-coverage">
+      <div class="meet-selector-wrap">
+        <label>Viewing meet:</label>
+        <select id="meet-select" onchange="renderCoverage()"></select>
+        <button class="export-btn" onclick="exportEmails()">Export assignee emails</button>
+        <button class="export-btn" onclick="exportRoster()">Export assignment list</button>
+      </div>
+      <div id="email-export-box" style="display:none;margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:6px;">Assigned volunteer emails — <span id="export-meet-label"></span></div>
+        <textarea id="email-export-text" readonly style="width:100%;height:72px;font-family:monospace;font-size:13px;background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;resize:none;color:var(--navy);" onclick="this.select()"></textarea>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Click the box to select all, then copy.</div>
+      </div>
+      <div id="roster-export-box" style="display:none;margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:6px;">Assignment list — <span id="export-roster-meet-label"></span></div>
+        <textarea id="roster-export-text" readonly style="width:100%;height:260px;font-family:monospace;font-size:13px;background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;resize:vertical;color:var(--navy);" onclick="this.select()"></textarea>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Click the box to select all, then copy.</div>
+      </div>
+      <div id="coach-widget"></div>
+      <div id="coverage-wrap"></div>
+    </div>
+
+    <div class="admin-panel" id="panel-season">
+      <div id="season-wrap"></div>
+    </div>
+
+    <div class="admin-panel" id="panel-volunteers">
+      <div id="roster-wrap"></div>
+    </div>
+
+    <div class="admin-panel" id="panel-perks">
+      <div id="perks-wrap"></div>
+    </div>
+  </div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modal-title"></h2>
+    <div class="subtitle" id="modal-subtitle"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- COACH DETAIL MODAL -->
+<div class="modal-overlay" id="coach-modal-overlay">
+  <div class="modal" style="max-width:480px;">
+    <button class="modal-close" onclick="closeCoachModal()">×</button>
+    <h2 id="coach-modal-title"></h2>
+    <div class="subtitle" id="coach-modal-subtitle"></div>
+    <div id="coach-modal-body"></div>
+  </div>
+</div>
+<div class="modal-overlay" id="edit-modal-overlay">
+  <div class="modal edit-modal">
+    <button class="modal-close" onclick="closeEditModal()">×</button>
+    <h2>Edit Volunteer</h2>
+    <div class="subtitle" id="edit-modal-subtitle"></div>
+
+    <div class="edit-fields">
+      <div class="edit-row">
+        <div>
+          <label class="field-label">Full name</label>
+          <input type="text" id="edit-name">
+        </div>
+        <div>
+          <label class="field-label">Email</label>
+          <input type="email" id="edit-email">
+        </div>
+      </div>
+      <div class="edit-row" style="grid-template-columns:1fr;">
+        <div>
+          <label class="field-label">Coach <span style="font-weight:400;color:var(--text-muted);">(if CNW athlete)</span></label>
+          <select id="edit-coach">
+            <option value="">Not applicable / I'm not a CNW athlete</option>
+            <option value="Spencer Walsh">Spencer Walsh</option>
+            <option value="Nick Stenger">Nick Stenger</option>
+            <option value="Adam Young">Adam Young</option>
+            <option value="Sarah Reynolds">Sarah Reynolds</option>
+            <option value="Mia Tarte">Mia Tarte</option>
+            <option value="Tom Anderson">Tom Anderson</option>
+            <option value="Jack Bolas">Jack Bolas</option>
+          </select>
+        </div>
+      </div>
+      <div class="edit-row" style="grid-template-columns:1fr;">
+        <div>
+          <label class="field-label">Qualifications / experience</label>
+          <textarea id="edit-quals" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="edit-row" style="grid-template-columns:1fr;">
+        <div>
+          <label class="field-label">Coordinator notes</label>
+          <textarea id="edit-notes" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="edit-avail-header">
+      <span>Availability &amp; roles</span>
+      <span style="font-size:12px;color:var(--text-muted);font-weight:400;">Check boxes to indicate availability</span>
+    </div>
+    <div class="edit-grid-scroll">
+      <table class="avail-grid edit-avail-grid" id="edit-avail-grid"></table>
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+      <div id="delete-confirm-area">
+        <button class="delete-record-btn" onclick="showDeleteConfirm()">Delete this record</button>
+        <span id="delete-confirm-msg" style="display:none;">
+          <span style="font-size:13px;color:#7a1f1f;margin-right:8px;">Are you sure? This cannot be undone.</span>
+          <button class="confirm-delete-btn" onclick="confirmDeleteVolunteer()">Yes, permanently delete</button>
+          <button class="modal-cancel-btn" style="margin-left:6px;padding:6px 14px;font-size:12px;" onclick="hideDeleteConfirm()">Cancel</button>
+        </span>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="modal-cancel-btn" onclick="closeEditModal()">Cancel</button>
+        <button class="modal-save-btn" onclick="saveVolunteerEdit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// STATIC DATA
+// ══════════════════════════════════════════════════════
+const MEETS = [
+  {id:1,  label:"Meet 1 — Jun 3",   date:"2026-06-03"},
+  {id:2,  label:"Meet 2 — Jun 10",  date:"2026-06-10"},
+  {id:3,  label:"Meet 3 — Jun 17",  date:"2026-06-17"},
+  {id:4,  label:"Meet 4 — Jun 24",  date:"2026-06-24"},
+  {id:5,  label:"Meet 5 — Jul 1",   date:"2026-07-01"},
+  {id:6,  label:"Meet 6 — Jul 8",   date:"2026-07-08"},
+  {id:7,  label:"Meet 7 — Jul 15",  date:"2026-07-15"},
+  {id:8,  label:"Meet 8 — Jul 22",  date:"2026-07-22"},
+  {id:9,  label:"Meet 9 — Jul 29",  date:"2026-07-29"},
+  {id:10, label:"Meet 10 — Aug 5",  date:"2026-08-05"},
+  {id:11, label:"Meet 11 — Aug 12", date:"2026-08-12"},
+  {id:12, label:"Meet 12 — Aug 19", date:"2026-08-19"},
+];
+const SHORT_DATES = ["Jun 3","Jun 10","Jun 17","Jun 24","Jul 1","Jul 8","Jul 15","Jul 22","Jul 29","Aug 5","Aug 12","Aug 19"];
+
+function getTodayPST() { return new Date().toLocaleDateString('en-CA', {timeZone:'America/Los_Angeles'}); }
+function isMeetPast(meet) { return meet.date < getTodayPST(); }
+
+const COACHES = ["Spencer Walsh","Nick Stenger","Adam Young","Sarah Reynolds","Mia Tarte","Tom Anderson","Jack Bolas"];
+
+const ROLES = [
+  // Administrative
+  {id:1,  name:"Meet Director",                        time:"2:00–10:00pm", cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:2,  name:"Entry Gate",                           time:"4:30–9:00pm",  cat:"Administrative", exp:false, slots:4, priority:1},
+  {id:3,  name:"Entry Gate / Season Pass",             time:"5:30–7:00pm",  cat:"Administrative", exp:false, slots:1, priority:1},
+  {id:4,  name:"Waiver Desk Chief",                    time:"4:45–8:30pm",  cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:5,  name:"Waiver Desk",                          time:"5:00–8:30pm",  cat:"Administrative", exp:false, slots:1, priority:1},
+  {id:6,  name:"Announcer",                            time:"5:00–9:45pm",  cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:7,  name:"Volunteer Coordinator",                time:"varies",       cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:9,  name:"Clerking Chief",                       time:"5:45–9:00pm",  cat:"Administrative", exp:true,  slots:1, priority:1},
+  {id:10, name:"Clerk Asst",                           time:"5:45–9:00pm",  cat:"Administrative", exp:false, slots:1, priority:3},
+  // Track
+  {id:16, name:"Starter",                              time:"5:45–9:15pm",  cat:"Track",          exp:true,  slots:2, priority:1},
+  {id:17, name:"Starter Trainee",                      time:"5:45–9:15pm",  cat:"Track",          exp:false, slots:2, priority:2},
+  {id:18, name:"Kids Track Start Asst",                time:"5:45–7:15pm",  cat:"Track",          exp:false, slots:1, priority:1},
+  {id:19, name:"Line Clerk",                           time:"6:30–9:45pm",  cat:"Track",          exp:true,  slots:1, priority:1},
+  {id:20, name:"Line Clerk Assist",                    time:"6:30–9:45pm",  cat:"Track",          exp:false, slots:1, priority:1},
+  {id:22, name:"Hand-Timing Chief",                    time:"5:45–9:45pm",  cat:"Track",          exp:true,  slots:1, priority:1},
+  {id:23, name:"Finish Line Kids / Open",              time:"5:45–9:45pm",  cat:"Track",          exp:false, slots:1, priority:1},
+  {id:24, name:"Finish Line Kids",                     time:"5:45–8:00pm",  cat:"Track",          exp:false, slots:3, priority:1},
+  {id:25, name:"F.A.T. Chief",                         time:"6:30–9:00pm",  cat:"Track",          exp:true,  slots:1, priority:1},
+  {id:26, name:"F.A.T. Asst",                          time:"6:30–9:00pm",  cat:"Track",          exp:false, slots:2, priority:1},
+  // Field
+  {id:29, name:"High Jump Chief — Kids",               time:"5:45–7:00pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:30, name:"High Jump Asst — Kids",                time:"5:45–7:00pm",  cat:"Field",          exp:false, slots:1, priority:1},
+  {id:31, name:"High Jump Chief — Open",               time:"6:50–8:30pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:32, name:"High Jump Asst — Open",                time:"6:50–8:30pm",  cat:"Field",          exp:false, slots:1, priority:1},
+  {id:33, name:"Pole Vault Chief",                     time:"5:45–8:30pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:34, name:"Pole Vault Asst",                      time:"5:45–9:30pm",  cat:"Field",          exp:false, slots:2, priority:2},
+  {id:35, name:"LJ / TJ Chief",                        time:"5:45–10:00pm", cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:36, name:"LJ / TJ Asst — Shift 1",              time:"5:45–8:00pm",  cat:"Field",          exp:false, slots:3, priority:1},
+  {id:37, name:"LJ / TJ Asst — Shift 2",              time:"7:45–10:00pm", cat:"Field",          exp:false, slots:4, priority:1},
+  {id:39, name:"Shot Put Chief",                       time:"6:15–8:30pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:40, name:"Shot Put Asst",                        time:"6:15–8:30pm",  cat:"Field",          exp:false, slots:2, priority:1},
+  {id:41, name:"Discus Throw Chief",                   time:"7:00–9:00pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:42, name:"Discus Asst",                          time:"7:00–9:00pm",  cat:"Field",          exp:false, slots:2, priority:3},
+  {id:43, name:"TurboJav\u2122 Chief",                time:"5:45–7:30pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:44, name:"TurboJav\u2122 Asst",                 time:"5:45–7:30pm",  cat:"Field",          exp:false, slots:1, priority:1},
+  {id:45, name:"Javelin Throw Chief",                  time:"6:30–9:00pm",  cat:"Field",          exp:true,  slots:1, priority:1},
+  {id:46, name:"Javelin Asst",                         time:"6:30–9:00pm",  cat:"Field",          exp:false, slots:3, priority:2},
+];
+const CATS = ["Administrative","Track","Field"];
+const VOLUNTEER_HIDDEN_ROLES = new Set([1, 7]); // Meet Director, Volunteer Coordinator — pre-assigned, not shown on volunteer form
+
+// ══════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════
+let volunteers  = [];
+let assignments = {};
+let raffleData  = {};
+let _modalMeetId = null, _modalRoleId = null;
+
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL'; // Replace with your deployed Apps Script URL (see SETUP.md Step 4)
+
+// ── JSONP HELPER ──────────────────────────────────────────────────────────────
+// Used for all GET requests to bypass CORS restrictions on Apps Script
+function jsonpGet(url, params) {
+  return new Promise((resolve, reject) => {
+    const cbName = 'cb_' + Math.random().toString(36).slice(2);
+    const qs = Object.entries({...params, callback: cbName})
+      .map(([k,v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+    const script = document.createElement('script');
+    window[cbName] = (data) => {
+      delete window[cbName];
+      document.head.removeChild(script);
+      if (data && data.error) reject(new Error(data.error));
+      else resolve(data);
+    };
+    script.src = `${url}?${qs}`;
+    script.onerror = () => { delete window[cbName]; reject(new Error('JSONP failed')); };
+    document.head.appendChild(script);
+  });
+}
+
+// ── LOAD DATA ─────────────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    const data = await jsonpGet(SCRIPT_URL, {action: 'getAdminData'});
+    volunteers  = data.volunteers  || [];
+    assignments = data.assignments || {};
+    raffleData  = data.raffleData  || {};
+  } catch(e) {
+    console.error('Failed to load data:', e);
+    document.getElementById('coverage-wrap').innerHTML =
+      '<div style="padding:40px;text-align:center;color:#8a7a6a;">Could not load data. Check the Apps Script URL and try refreshing.</div>';
+    return;
+  }
+  updateStats();
+  renderCoverage();
+  renderRoster();
+  renderPerks();
+}
+
+// ── SAVE HELPERS ──────────────────────────────────────────────────────────────
+// POST requests use no-cors mode — we can't read the response, but the
+// Apps Script still receives and processes the data successfully.
+async function saveToSheet(payload) {
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload),
+    });
+  } catch(e) { console.error('Sheet save failed:', e); }
+}
+
+// ══════════════════════════════════════════════════════
+// STATS
+// ══════════════════════════════════════════════════════
+// ── TAB NAVIGATION ────────────────────────────────────────────────────────────
+function showAdminTab(name, btn) {
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  btn.classList.add('active');
+  if (name === 'season') renderSeasonView();
+}
+
+// ── DATA HELPERS ──────────────────────────────────────────────────────────────
+function isAvailable(vol, meetId, roleId) {
+  if (!vol.avail) return false;
+  // meetId may be string or number depending on source
+  const key = vol.avail[meetId] ? meetId : String(meetId);
+  return vol.avail[key] && vol.avail[key].includes(parseInt(roleId));
+}
+
+function getConflictRole(vol, meetId) {
+  if (!assignments[meetId]) return null;
+  for (const [rId, vIds] of Object.entries(assignments[meetId])) {
+    if (Array.isArray(vIds) && vIds.includes(vol.id)) return ROLES.find(r => r.id === parseInt(rId));
+  }
+  return null;
+}
+
+function recalcSUs() {
+  volunteers.forEach(v => {
+    const meetsDone = new Set();
+    MEETS.forEach(m => {
+      if (assignments[m.id]) {
+        const allAssigned = Object.values(assignments[m.id]).flat();
+        if (allAssigned.includes(v.id)) meetsDone.add(m.id);
+      }
+    });
+    v.sus = meetsDone.size;
+  });
+}
+
+function countUnfilledRoles(meetId) {
+  return ROLES.filter(role => {
+    const assigned = assignments[meetId] && assignments[meetId][role.id]
+      ? assignments[meetId][role.id].length
+      : 0;
+    return assigned < role.slots;
+  }).length;
+}
+
+function updateStats() {
+  document.getElementById('stat-volunteers').textContent = volunteers.length;
+  const meetId = parseInt(document.getElementById('meet-select')?.value || 1);
+  const meet   = MEETS.find(m => m.id === meetId);
+  const unfilled = countUnfilledRoles(meetId);
+  document.getElementById('stat-gaps').textContent = unfilled;
+  document.getElementById('stat-gaps-label').textContent = `Unfilled roles — ${meet?.label || ''}`;
+  document.getElementById('stat-card-gaps').classList.toggle('alert', unfilled > 0);
+}
+
+// ══════════════════════════════════════════════════════
+// COVERAGE TAB
+// ══════════════════════════════════════════════════════
+function buildMeetSelect() {
+  document.getElementById('meet-select').innerHTML =
+    MEETS.map(m => `<option value="${m.id}">${m.label}</option>`).join('');
+}
+
+function renderCoachWidget(meetId) {
+  const meet = MEETS.find(m => m.id === meetId);
+  const counts = {};
+  COACHES.forEach(c => counts[c] = 0);
+  volunteers.forEach(vol => {
+    if (!vol.coach) return;
+    const hasAvail = vol.avail && vol.avail[meetId] && vol.avail[meetId].length > 0;
+    if (hasAvail && counts[vol.coach] !== undefined) counts[vol.coach]++;
+  });
+
+  let html = `<div class="coach-widget">
+    <div class="coach-widget-title">Training group availability — ${meet?.label || ''} <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px;">Click a coach to see their athletes</span></div>
+    <div class="coach-grid">`;
+  COACHES.forEach(coach => {
+    const n = counts[coach];
+    const lastName = coach.split(' ')[1];
+    html += `<div class="coach-card ${n > 0 ? 'has-athletes' : ''} ${n > 0 ? 'coach-card-clickable' : ''}"
+      onclick="${n > 0 ? `openCoachModal('${coach.replace(/'/g,"\\'")}', '${meetId}')` : ''}"
+      title="${n > 0 ? `Click to see ${coach}'s available athletes` : 'No athletes available this meet'}">
+      <div class="coach-name">${lastName}</div>
+      <div class="coach-count ${n > 0 ? 'has-athletes' : ''}">${n}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+  document.getElementById('coach-widget').innerHTML = html;
+}
+
+function openCoachModal(coach, meetId) {
+  meetId = parseInt(meetId);
+  const meet = MEETS.find(m => m.id === meetId);
+  const athletes = volunteers.filter(vol => {
+    if (vol.coach !== coach) return false;
+    return vol.avail && (vol.avail[meetId] || vol.avail[String(meetId)]);
+  });
+
+  document.getElementById('coach-modal-title').textContent = coach;
+  document.getElementById('coach-modal-subtitle').textContent =
+    `Athletes available for ${meet?.label || ''}`;
+
+  let html = '';
+  if (!athletes.length) {
+    html = '<p style="color:var(--text-muted);font-size:13px;padding:12px 0;">No athletes available for this meet.</p>';
+  } else {
+    athletes.forEach(vol => {
+      const roleIds = vol.avail[meetId] || [];
+      const roleNames = roleIds.map(id => ROLES.find(r => r.id === id)?.name).filter(Boolean);
+      const assignedRole = getConflictRole(vol, meetId);
+      html += `<div class="coach-athlete-row">
+        <div>
+          <div style="font-weight:500;font-size:13px;">${vol.name}</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">
+            Available for: ${roleNames.slice(0,4).join(', ')}${roleNames.length > 4 ? ` +${roleNames.length-4} more` : ''}
+          </div>
+          ${assignedRole ? `<div style="font-size:11px;color:#1a6b3a;margin-top:2px;font-weight:600;">✓ Assigned: ${assignedRole.name}</div>` : ''}
+        </div>
+        ${vol.flexible && vol.flexibleMeets && vol.flexibleMeets.includes(meetId)
+          ? '<span class="flexible-tag" style="flex-shrink:0;">Flexible</span>'
+          : ''}
+      </div>`;
+    });
+  }
+  document.getElementById('coach-modal-body').innerHTML = html;
+  document.getElementById('coach-modal-overlay').classList.add('open');
+}
+
+function closeCoachModal() {
+  document.getElementById('coach-modal-overlay').classList.remove('open');
+}
+
+function exportEmails() {
+  const box = document.getElementById('email-export-box');
+  if (box.style.display !== 'none') { box.style.display = 'none'; return; }
+  const meetId = parseInt(document.getElementById('meet-select').value);
+  const meet   = MEETS.find(m => m.id === meetId);
+  const allAssignedIds = assignments[meetId]
+    ? [...new Set(Object.values(assignments[meetId]).flat())]
+    : [];
+  const emails = allAssignedIds
+    .map(vid => volunteers.find(v => String(v.id) === String(vid))?.email)
+    .filter(Boolean)
+    .join(', ');
+  document.getElementById('export-meet-label').textContent = meet?.label || '';
+  document.getElementById('email-export-text').value = emails || '(No volunteers assigned yet for this meet)';
+  box.style.display = 'block';
+  document.getElementById('email-export-text').select();
+}
+
+function exportRoster() {
+  const box = document.getElementById('roster-export-box');
+  if (box.style.display !== 'none') { box.style.display = 'none'; return; }
+  const meetId = parseInt(document.getElementById('meet-select').value);
+  const meet   = MEETS.find(m => m.id === meetId);
+  if (!assignments[meetId] || !Object.keys(assignments[meetId]).length) {
+    document.getElementById('export-roster-meet-label').textContent = meet?.label || '';
+    document.getElementById('roster-export-text').value = '(No volunteers assigned yet for this meet)';
+    box.style.display = 'block';
+    return;
+  }
+
+  let lines = [`CNW All-Comers — ${meet?.label || ''}\n`];
+  CATS.forEach(cat => {
+    const catRoles = ROLES.filter(r => r.cat === cat);
+    catRoles.forEach(role => {
+      const assignedIds = (assignments[meetId] && assignments[meetId][role.id]) || [];
+      if (!assignedIds.length) return;
+      const names = assignedIds
+        .map(vid => volunteers.find(v => String(v.id) === String(vid))?.name || '?')
+        .join(', ');
+      lines.push(`${role.name} (${role.time})`);
+      assignedIds.forEach(vid => {
+        const vol = volunteers.find(v => String(v.id) === String(vid));
+        if (vol) lines.push(`  • ${vol.name}`);
+      });
+      lines.push('');
+    });
+  });
+
+  document.getElementById('export-roster-meet-label').textContent = meet?.label || '';
+  document.getElementById('roster-export-text').value = lines.join('\n').trim();
+  box.style.display = 'block';
+  document.getElementById('roster-export-text').select();
+}
+
+function renderCoverage() {
+  const meetId = parseInt(document.getElementById('meet-select').value);
+  updateStats();
+  renderCoachWidget(meetId);
+  if (!volunteers.length) {
+    document.getElementById('coverage-wrap').innerHTML = '<div class="empty-state">No volunteers have signed up yet.</div>';
+    return;
+  }
+  let html = `<table class="coverage-table"><thead><tr>
+    <th>Role</th><th>Time</th><th>Need</th><th>Available</th><th>Assigned</th><th></th>
+  </tr></thead><tbody>`;
+  const priorityLabel = {1:'P1 — Essential', 2:'P2 — Important', 3:'P3 — Nice to have'};
+  const priorityStyle = {
+    1:'background:#fdecea;color:#7a1f1f;',
+    2:'background:#fff0e8;color:#7a2e00;',
+    3:'background:#f0f0f0;color:#666;',
+  };
+  CATS.forEach(cat => {
+    html += `<tr class="cat-head"><td colspan="6">${cat}</td></tr>`;
+    ROLES.filter(r => r.cat === cat).forEach(role => {
+      const count = volunteers.filter(v => isAvailable(v, meetId, role.id)).length;
+      const assignedVolIds = (assignments[meetId] && assignments[meetId][role.id]) || [];
+      const filled = assignedVolIds.length;
+      const needed = role.slots;
+
+      // Build assigned display — flag anyone no longer available
+      // Skip conflict check for pre-assigned volunteers (empty avail = bypassed form)
+      const assignedDisplay = assignedVolIds.length
+        ? assignedVolIds.map(vid => {
+            const vol = volunteers.find(v => String(v.id) === String(vid));
+            if (!vol) return `<span style="color:var(--text-muted)">Unknown</span>`;
+            const hasAvailData = vol.avail && Object.keys(vol.avail).length > 0;
+            const stillAvail = !hasAvailData || isAvailable(vol, meetId, role.id);
+            return stillAvail
+              ? vol.name
+              : `<span class="conflict-assigned" title="No longer available for this role/date">⚠ ${vol.name}</span>`;
+          }).join(', ')
+        : '<span style="color:var(--text-muted)">—</span>';
+
+      // Count only still-available assigned volunteers for color coding
+      const validFilled = assignedVolIds.filter(vid => {
+        const vol = volunteers.find(v => String(v.id) === String(vid));
+        if (!vol) return false;
+        const hasAvailData = vol.avail && Object.keys(vol.avail).length > 0;
+        return !hasAvailData || isAvailable(vol, meetId, role.id);
+      }).length;
+      const hasConflicts = filled > validFilled;
+      const assignedCellStyle = hasConflicts
+        ? 'background:#fff0e8;'
+        : validFilled >= needed
+          ? 'background:#e8f5ed;'
+          : filled > 0
+            ? 'background:#fff8e1;'
+            : 'background:#fdecea;';
+
+      const pStyle = priorityStyle[role.priority];
+      const pLabel = priorityLabel[role.priority];
+      html += `<tr>
+        <td style="font-weight:500;">
+          ${role.name}${role.exp?' <span class="qual-badge">Exp.</span>':''}
+          <span style="display:inline-block;font-size:9px;font-weight:600;padding:1px 6px;border-radius:3px;margin-left:4px;${pStyle}">${pLabel}</span>
+        </td>
+        <td style="color:var(--text-muted);font-size:12px;">${role.time}</td>
+        <td style="font-size:12px;color:var(--text-mid);text-align:center;">${role.slots}</td>
+        <td style="font-size:13px;color:var(--text-muted);">${count} available</td>
+        <td style="font-size:13px;${assignedCellStyle}padding:10px 14px;">${assignedDisplay}</td>
+        <td><button class="assign-btn" onclick="openModal('${meetId}','${role.id}')">View &amp; assign</button></td>
+      </tr>`;
+    });
+  });
+  html += '</tbody></table>';
+  document.getElementById('coverage-wrap').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// MODAL
+// ══════════════════════════════════════════════════════
+function openModal(meetId, roleId) {
+  _modalMeetId = parseInt(meetId); _modalRoleId = parseInt(roleId);
+  const role = ROLES.find(r => r.id === parseInt(roleId));
+  const meet = MEETS.find(m => m.id === parseInt(meetId));
+  document.getElementById('modal-title').textContent = role.name;
+  document.getElementById('modal-subtitle').textContent = `${meet.label} · ${role.time}`;
+  renderModalBody();
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function renderModalBody() {
+  const meetId = _modalMeetId, roleId = _modalRoleId;
+  const role = ROLES.find(r => r.id === roleId);
+  const assignedVolIds = (assignments[meetId] && assignments[meetId][roleId]) || [];
+  const filledSlots = assignedVolIds.length;
+  const totalSlots = role.slots;
+
+  // Split assigned volunteers into still-available and no-longer-available
+  const assignedVols = assignedVolIds.map(vid => volunteers.find(v => String(v.id) === String(vid))).filter(Boolean);
+  const noLongerAvail = assignedVols.filter(v => {
+    const hasAvailData = v.avail && Object.keys(v.avail).length > 0;
+    return hasAvailData && !isAvailable(v, meetId, roleId);
+  });
+
+  // Available volunteers (not yet assigned)
+  const availVols = volunteers.filter(v => isAvailable(v, meetId, roleId));
+
+  if (!availVols.length && !assignedVols.length) {
+    document.getElementById('modal-body').innerHTML =
+      '<p style="color:var(--text-muted);font-size:13px;padding:12px 0;">No volunteers are available for this role on this date.</p>';
+    return;
+  }
+
+  const slotsNote = `<div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);">${filledSlots} of ${totalSlots} slot${totalSlots!==1?'s':''} filled</div>`;
+  let html = slotsNote;
+
+  // Section 1: assigned but no longer available — always show with warning + Remove
+  if (noLongerAvail.length) {
+    html += `<div style="font-size:11px;font-weight:700;color:#b83232;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">⚠ No longer available</div>`;
+    noLongerAvail.forEach(vol => {
+      html += `<div class="avail-name-row" style="opacity:0.8;">
+        <div>
+          <div class="name" style="color:#b83232;">${vol.name}</div>
+          <div class="sub">Removed this date from their availability</div>
+        </div>
+        <span style="display:inline-flex;align-items:center;gap:4px;">
+          <button class="modal-assign-btn" style="background:#b83232;cursor:default;" disabled>⚠ Assigned</button>
+          <span class="unassign-link" onclick="unassignVol('${meetId}','${roleId}','${vol.id}')">Remove</span>
+        </span>
+      </div>`;
+    });
+    if (availVols.length) {
+      html += `<div style="font-size:11px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;margin:12px 0 8px;">Available volunteers</div>`;
+    }
+  }
+
+  // Section 2: available volunteers
+  availVols.forEach(vol => {
+    const isAssigned = assignedVolIds.some(id => String(id) === String(vol.id));
+    const conflict   = !isAssigned ? getConflictRole(vol, meetId) : null;
+    const slotsFull  = !isAssigned && filledSlots >= totalSlots;
+    let btnHtml;
+    if (isAssigned) {
+      btnHtml = `<span style="display:inline-flex;align-items:center;gap:4px;">
+        <button class="modal-assign-btn assigned" disabled>✓ Assigned</button>
+        <span class="unassign-link" onclick="unassignVol('${meetId}','${roleId}','${vol.id}')">Remove</span>
+      </span>`;
+    } else if (conflict) {
+      btnHtml = `<button class="modal-assign-btn" disabled title="Already assigned to: ${conflict.name}" style="cursor:not-allowed;">Assign</button>`;
+    } else if (slotsFull) {
+      btnHtml = `<button class="modal-assign-btn" disabled title="All slots for this role are filled" style="cursor:not-allowed;">Role full</button>`;
+    } else {
+      btnHtml = `<button class="modal-assign-btn" onclick="assignVol('${meetId}','${roleId}','${vol.id}')">Assign</button>`;
+    }
+    html += `<div class="avail-name-row ${conflict?'conflict':''}" ${conflict?`title="Already assigned to: ${conflict.name}"`:''}">
+      <div>
+        <div class="name">${vol.name}</div>
+        <div class="sub">${conflict ? `Already assigned: ${conflict.name}` : slotsFull ? 'Role fully staffed' : (vol.quals ? 'Qualifications on file' : 'No qualifications noted')}${(vol.flexibleMeets && vol.flexibleMeets.includes(meetId) && !conflict) ? '<span class="flexible-tag">Flexible</span>' : ''}</div>
+      </div>
+      ${btnHtml}
+    </div>`;
+  });
+
+  if (!availVols.length && !noLongerAvail.length) {
+    html += '<p style="color:var(--text-muted);font-size:13px;padding:12px 0;">No volunteers available for this role on this date.</p>';
+  }
+
+  document.getElementById('modal-body').innerHTML = html;
+}
+function assignVol(meetId, roleId, volId) {
+  const mid = parseInt(meetId), rid = parseInt(roleId);
+  if (!assignments[mid]) assignments[mid] = {};
+  if (!assignments[mid][rid]) assignments[mid][rid] = [];
+  if (!assignments[mid][rid].includes(volId)) {
+    assignments[mid][rid].push(volId);
+    saveToSheet({action:'saveAssignment', meetId: mid, roleId: rid, volId, unassign: false});
+  }
+  recalcSUs(); renderModalBody(); renderCoverage(); renderPerks();
+}
+function unassignVol(meetId, roleId, volId) {
+  const mid = parseInt(meetId), rid = parseInt(roleId);
+  if (assignments[mid] && assignments[mid][rid]) {
+    assignments[mid][rid] = assignments[mid][rid].filter(id => id !== volId);
+    saveToSheet({action:'saveAssignment', meetId: mid, roleId: rid, volId, unassign: true});
+  }
+  recalcSUs(); renderModalBody(); renderCoverage(); renderPerks();
+}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+
+// ══════════════════════════════════════════════════════
+// ROSTER TAB
+// ══════════════════════════════════════════════════════
+function formatDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+}
+function findDuplicates() {
+  const emailCounts = {}, nameCounts = {};
+  volunteers.forEach(v => {
+    const email = v.email.toLowerCase();
+    const name  = v.name.trim().toLowerCase();
+    emailCounts[email] = (emailCounts[email] || 0) + 1;
+    nameCounts[name]   = (nameCounts[name]   || 0) + 1;
+  });
+  const dupEmails = new Set(Object.entries(emailCounts).filter(([,c]) => c > 1).map(([e]) => e));
+  const dupNames  = new Set(Object.entries(nameCounts).filter(([,c])  => c > 1).map(([n]) => n));
+  return {dupEmails, dupNames};
+}
+function highlightDuplicates(email, name) {
+  document.querySelectorAll('.roster-row').forEach(r => r.classList.remove('dup-highlight'));
+  document.querySelectorAll(`.roster-row[data-email="${email}"], .roster-row[data-name="${name}"]`).forEach(r => {
+    r.classList.add('dup-highlight');
+    r.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+}
+
+function renderRoster() {
+  if (!volunteers.length) {
+    document.getElementById('roster-wrap').innerHTML = '<div class="empty-state">No volunteers have signed up yet. Submit the volunteer form to see someone appear here.</div>';
+    return;
+  }
+  const {dupEmails, dupNames} = findDuplicates();
+  let html = `<table class="volunteer-table"><thead><tr>
+    <th>Name</th><th>Email</th><th>Coach</th><th>Submitted / Updated</th>
+    <th>Availability (12 meets)</th><th>Roles offered</th><th>Experience</th><th>SUs earned</th><th></th>
+  </tr></thead><tbody>`;
+  volunteers.forEach(vol => {
+    const isDup = dupEmails.has(vol.email.toLowerCase()) || dupNames.has(vol.name.trim().toLowerCase());
+    const dupReason = dupEmails.has(vol.email.toLowerCase()) && dupNames.has(vol.name.trim().toLowerCase())
+      ? 'Duplicate name and email detected'
+      : dupEmails.has(vol.email.toLowerCase())
+        ? 'Duplicate email detected'
+        : 'Duplicate name detected — confirm this is not the same person';
+    const dots = MEETS.map(m => {
+      const hasAny = vol.avail && vol.avail[m.id] && vol.avail[m.id].length > 0;
+      return `<div class="avail-dot ${hasAny?'yes':'no'}" title="${m.label}">${m.id}</div>`;
+    }).join('');
+    const roleIds = new Set();
+    if (vol.avail) Object.values(vol.avail).forEach(arr => arr.forEach(id => roleIds.add(id)));
+    const roleTags = [...roleIds].slice(0,4).map(id => {
+      const r = ROLES.find(r=>r.id===id);
+      return r ? `<span style="display:inline-block;background:#e8f0fb;color:#0c447c;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin:2px 2px 0 0;">${r.name.split(' ').slice(0,3).join(' ')}</span>` : '';
+    }).join('') + (roleIds.size>4 ? `<span style="font-size:11px;color:var(--text-muted);"> +${roleIds.size-4} more</span>` : '');
+    const coachDisplay = vol.coach
+      ? `<span style="font-size:12px;">${vol.coach}</span>`
+      : `<span style="color:var(--text-muted);font-size:12px;">—</span>`;
+    const submitted = formatDate(vol.submittedAt);
+    const updated   = vol.updatedAt && vol.updatedAt !== vol.submittedAt ? formatDate(vol.updatedAt) : null;
+    const dateDisplay = `<span style="font-size:12px;">${submitted}${updated ? `<br><span style="color:var(--text-muted);">Updated ${updated}</span>` : ''}</span>`;
+    const dupBadge = isDup
+      ? `<button class="dup-badge" onclick="highlightDuplicates('${vol.email.toLowerCase()}','${vol.name.trim().toLowerCase().replace(/'/g,"\\'")}') " title="${dupReason}">⚠ Duplicate</button>`
+      : '';
+    html += `<tr class="roster-row ${isDup?'dup-row':''}" data-email="${vol.email.toLowerCase()}" data-name="${vol.name.trim().toLowerCase().replace(/"/g,'&quot;')}">
+      <td style="font-weight:500;">${vol.name}${dupBadge}</td>
+      <td style="font-size:12px;color:var(--text-muted);">${vol.email}</td>
+      <td>${coachDisplay}</td>
+      <td>${dateDisplay}</td>
+      <td><div class="avail-dots">${dots}</div></td>
+      <td>${roleTags}</td>
+      <td style="font-size:12px;">${vol.quals?'✓ On file':'<span style="color:var(--text-muted)">None noted</span>'}</td>
+      <td><span class="su-badge">${vol.sus} SU${vol.sus!==1?'s':''}</span></td>
+      <td><button class="edit-btn" onclick="openEditModal('${vol.id}')">Edit</button></td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('roster-wrap').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// EDIT VOLUNTEER MODAL
+// ══════════════════════════════════════════════════════
+let _editVolId = null;
+
+function openEditModal(volId) {
+  const vol = volunteers.find(v => String(v.id) === String(volId));
+  if (!vol) return;
+  _editVolId = volId;
+
+  document.getElementById('edit-modal-subtitle').textContent = `Editing record for ${vol.name}`;
+  document.getElementById('edit-name').value  = vol.name;
+  document.getElementById('edit-email').value = vol.email;
+  document.getElementById('edit-coach').value = vol.coach || '';
+  document.getElementById('edit-quals').value = vol.quals || '';
+  document.getElementById('edit-notes').value = vol.notes || '';
+
+  buildEditGrid(vol);
+  document.getElementById('edit-modal-overlay').classList.add('open');
+}
+
+function buildEditGrid(vol) {
+  const tbl = document.getElementById('edit-avail-grid');
+  let html = '<thead><tr><th class="role-col">Role</th>';
+  SHORT_DATES.forEach(d => html += `<th>${d}</th>`);
+  html += '</tr></thead><tbody>';
+
+  // Flexible row
+  html += `<tr style="background:rgba(30,60,180,0.05);">
+    <td class="role-cell" style="font-style:italic;color:var(--navy);font-size:12px;">
+      I'm flexible — any role
+      <span class="role-time" style="font-style:normal;">Auto-fills non-exp. roles</span>
+    </td>`;
+  MEETS.forEach(m => {
+    const nonExpRoles = ROLES.filter(r => !r.exp);
+    const meetAvail = vol.avail && (vol.avail[m.id] || vol.avail[String(m.id)]) || [];
+    const allChecked = nonExpRoles.every(r => meetAvail.includes(r.id));
+    html += `<td class="check-cell"><input type="checkbox" id="eflex_${m.id}" ${allChecked?'checked':''} onchange="handleEditFlexChange(${m.id})"></td>`;
+  });
+  html += '</tr>';
+
+  // Separator
+  html += `<tr><td colspan="${MEETS.length+1}" style="padding:0;height:3px;background:var(--navy);opacity:0.15;"></td></tr>`;
+
+  // Role rows
+  CATS.forEach(cat => {
+    const visibleEditRoles = ROLES.filter(r => r.cat === cat && !VOLUNTEER_HIDDEN_ROLES.has(r.id));
+    if (!visibleEditRoles.length) return;
+    html += `<tr class="cat-row"><td colspan="${MEETS.length+1}">${cat}</td></tr>`;
+    if (cat !== 'Administrative') {
+      html += `<tr><td style="padding:4px 12px;font-size:10px;color:var(--text-muted);font-style:italic;border:1px solid var(--border);background:rgba(15,41,66,0.03);">Role</td>`;
+      SHORT_DATES.forEach(d => html += `<td style="text-align:center;font-size:10px;font-weight:600;color:var(--text-mid);padding:4px 2px;border:1px solid var(--border);background:rgba(15,41,66,0.03);">${d}</td>`);
+      html += '</tr>';
+    }
+    visibleEditRoles.forEach(role => {
+      const nudge = role.slots >= 3
+        ? `<br><span style="display:inline-block;font-size:10px;color:var(--gold);font-weight:600;font-style:italic;margin-top:3px;">Many needed!</span>`
+        : '';
+      html += `<tr><td class="role-cell">${role.name}${nudge}<br><span class="role-time">${role.time}</span>${role.exp?'<br><span class="qual-badge">Exp. req.</span>':''}</td>`;
+      MEETS.forEach(m => {
+        const meetAvail = vol.avail && (vol.avail[m.id] || vol.avail[String(m.id)]) || [];
+        const checked = meetAvail.includes(role.id);
+        html += `<td class="check-cell"><input type="checkbox" id="ecb_${role.id}_${m.id}" ${checked?'checked':''}></td>`;
+      });
+      html += '</tr>';
+    });
+  });
+  html += '</tbody>';
+  tbl.innerHTML = html;
+}
+
+function handleEditFlexChange(meetId) {
+  const isFlexible = document.getElementById(`eflex_${meetId}`).checked;
+  ROLES.filter(r => !r.exp).forEach(role => {
+    const cb = document.getElementById(`ecb_${role.id}_${meetId}`);
+    if (cb) cb.checked = isFlexible;
+  });
+}
+
+function saveVolunteerEdit() {
+  const vol = volunteers.find(v => String(v.id) === String(_editVolId));
+  if (!vol) return;
+
+  vol.name  = document.getElementById('edit-name').value.trim();
+  vol.email = document.getElementById('edit-email').value.trim();
+  vol.coach = document.getElementById('edit-coach').value;
+  vol.quals = document.getElementById('edit-quals').value;
+  vol.notes = document.getElementById('edit-notes').value;
+  vol.updatedAt = new Date().toISOString();
+
+  // Rebuild availability from grid
+  const newAvail = {};
+  ROLES.forEach(role => {
+    MEETS.forEach(meet => {
+      const cb = document.getElementById(`ecb_${role.id}_${meet.id}`);
+      if (cb && cb.checked) {
+        if (!newAvail[meet.id]) newAvail[meet.id] = [];
+        newAvail[meet.id].push(role.id);
+      }
+    });
+  });
+  vol.avail = newAvail;
+
+  vol.flexibleMeets = MEETS.filter(m => document.getElementById(`eflex_${m.id}`)?.checked).map(m => m.id);
+  vol.flexible = vol.flexibleMeets.length > 0;
+
+  saveToSheet({action:'updateVolunteerAdmin', volunteer: vol});
+  closeEditModal();
+  renderRoster();
+  renderCoverage();
+  renderPerks();
+}
+
+function showDeleteConfirm() {
+  document.querySelector('.delete-record-btn').style.display = 'none';
+  document.getElementById('delete-confirm-msg').style.display = 'inline';
+}
+function hideDeleteConfirm() {
+  document.getElementById('delete-confirm-msg').style.display = 'none';
+  document.querySelector('.delete-record-btn').style.display = 'inline-block';
+}
+function confirmDeleteVolunteer() {
+  if (!_editVolId) return;
+  saveToSheet({action:'deleteVolunteer', volId: _editVolId});
+  volunteers = volunteers.filter(v => String(v.id) !== String(_editVolId));
+  // Remove from assignments
+  Object.keys(assignments).forEach(meetId => {
+    Object.keys(assignments[meetId]).forEach(roleId => {
+      assignments[meetId][roleId] = assignments[meetId][roleId].filter(id => id !== _editVolId);
+    });
+  });
+  recalcSUs();
+  closeEditModal();
+  renderRoster();
+  renderCoverage();
+  renderPerks();
+  updateStats();
+}
+
+function closeEditModal() {
+  document.getElementById('edit-modal-overlay').classList.remove('open');
+  hideDeleteConfirm();
+  _editVolId = null;
+}
+document.getElementById('coach-modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('coach-modal-overlay')) closeCoachModal();
+});
+document.getElementById('edit-modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('edit-modal-overlay')) closeEditModal();
+});
+
+// ══════════════════════════════════════════════════════
+// PERKS TAB
+// ══════════════════════════════════════════════════════
+function renderPerks() {
+  if (!volunteers.length) {
+    document.getElementById('perks-wrap').innerHTML = '<div class="empty-state">No volunteers yet.</div>';
+    return;
+  }
+  let html = `<table class="perk-table"><thead><tr>
+    <th>Volunteer</th><th>SUs earned</th><th>Merch issued</th>`;
+  MEETS.forEach(m => html += `<th>M${m.id}<br><span style="font-weight:400;opacity:0.7;font-size:10px;">Raffle</span></th>`);
+  html += `</tr></thead><tbody>`;
+  volunteers.forEach(vol => {
+    html += `<tr>
+      <td style="font-weight:500;">${vol.name}</td>
+      <td><span class="su-badge">${vol.sus}</span></td>
+      <td style="text-align:center;"><input type="checkbox" ${vol.merchs?'checked':''} onchange="setMerch('${vol.id}',this.checked)"></td>`;
+    MEETS.forEach(m => {
+      const allAssigned = assignments[m.id] ? Object.values(assignments[m.id]).flat() : [];
+      const worked = allAssigned.includes(vol.id);
+      const inRaffle = raffleData[m.id] && raffleData[m.id][vol.id];
+      html += `<td style="text-align:center;">${worked
+        ? `<input type="checkbox" ${inRaffle?'checked':''} onchange="setRaffle('${m.id}','${vol.id}',this.checked)" title="Raffle entry for ${vol.name}">`
+        : '<span style="color:var(--border);">—</span>'}</td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  document.getElementById('perks-wrap').innerHTML = html;
+}
+function setRaffle(meetId, volId, val) {
+  if (!raffleData[meetId]) raffleData[meetId] = {};
+  raffleData[meetId][volId] = val;
+  saveToSheet({action:'saveRaffle', meetId, volId, entered: val});
+}
+function setMerch(volId, val) {
+  const vol = volunteers.find(v => String(v.id) === String(volId));
+  if (vol) { vol.merchs = val; saveToSheet({action:'saveMerch', volId, issued: val}); }
+}
+
+// ══════════════════════════════════════════════════════
+// SEASON VIEW
+// ══════════════════════════════════════════════════════
+function renderSeasonView() {
+  // Build initials helper
+  function initials(name) {
+    return name.split(' ').map(w => w[0]).join('').toUpperCase();
+  }
+
+  let html = `<div class="season-legend">
+    <span><span class="legend-swatch" style="background:#e8f5ed;"></span>Fully staffed</span>
+    <span><span class="legend-swatch" style="background:#fff8e1;"></span>Partially staffed</span>
+    <span><span class="legend-swatch" style="background:#fdecea;"></span>Unfilled</span>
+    <span style="color:var(--text-muted);font-size:11px;">Hover over initials to see full name</span>
+  </div>
+  <div class="season-scroll"><table class="season-grid">
+  <thead><tr>
+    <th class="role-col">Role</th>`;
+  MEETS.forEach(m => html += `<th>${m.label.replace(' — ',' ')}</th>`);
+  html += `</tr></thead><tbody>`;
+
+  CATS.forEach(cat => {
+    html += `<tr class="cat-head"><td class="role-cell" colspan="${MEETS.length+1}">${cat}</td></tr>`;
+    ROLES.filter(r => r.cat === cat).forEach(role => {
+      html += `<tr><td class="role-cell">${role.name}</td>`;
+      MEETS.forEach(m => {
+        const assignedIds = (assignments[m.id] && assignments[m.id][role.id]) || [];
+        const assigned = assignedIds.map(vid => volunteers.find(v => v.id === vid)).filter(Boolean);
+        const needed = role.slots;
+        const filled = assigned.length;
+        let cellClass = 'none';
+        if (needed > 0) {
+          cellClass = filled >= needed ? 'full' : filled > 0 ? 'partial' : 'empty';
+        }
+        const initialsHtml = assigned.map(v =>
+          `<span class="season-initials" title="${v.name}">${initials(v.name)}</span>`
+        ).join(' ');
+        html += `<td><div class="season-cell ${cellClass}">${initialsHtml || (needed > 0 ? '<span style="font-size:9px;color:#aaa;">—</span>' : '')}</div></td>`;
+      });
+      html += '</tr>';
+    });
+  });
+  html += `</tbody></table></div>`;
+  document.getElementById('season-wrap').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+buildMeetSelect();
+loadData();
+</script>
+<!-- PASSWORD PROMPT -->
+<div class="password-overlay" id="password-overlay">
+  <div class="password-box">
+    <div class="nav-brand" style="justify-content:center;margin-bottom:20px;">
+      <div class="dot"></div>CNW All-Comers
+    </div>
+    <h2>Coordinator Access</h2>
+    <p>Enter the coordinator password to access the dashboard.</p>
+    <input type="password" id="password-input" placeholder="Password"
+      onkeydown="if(event.key==='Enter') checkPassword()">
+    <button onclick="checkPassword()">Enter</button>
+    <div class="password-error" id="password-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<script>
+// ── PASSWORD PROMPT ───────────────────────────────────────────────────────────
+// Change this to your desired coordinator password before deploying.
+const COORDINATOR_PASSWORD = 'YOUR_COORDINATOR_PASSWORD';
+
+function checkPassword() {
+  const input = document.getElementById('password-input').value;
+  if (input === COORDINATOR_PASSWORD) {
+    document.getElementById('password-overlay').style.display = 'none';
+    sessionStorage.setItem('cnw_admin_auth', '1');
+  } else {
+    document.getElementById('password-error').style.display = 'block';
+    document.getElementById('password-input').value = '';
+    document.getElementById('password-input').focus();
+  }
+}
+
+// Check if already authenticated in this session
+if (sessionStorage.getItem('cnw_admin_auth') === '1') {
+  document.getElementById('password-overlay').style.display = 'none';
+}
+</script>
+</body>
+</html>
